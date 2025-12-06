@@ -3,72 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reader Discussion</title>
+    <title>Separate Comment Sections</title>
     <style>
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            background-color: #fdfbf7;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background-color: #fff;
-            padding: 40px;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 20px; background-color: #f4f4f4; }
+        
+        /* Style for each Writing Container */
+        .writing-container {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 40px; /* Space between different writings */
             border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        h1 {
-            text-align: center;
-            color: #222;
-            border-bottom: 2px solid #d9534f;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+
+        h2 { color: #333; }
+        p { line-height: 1.6; }
+
+        /* Comment Section Styles */
+        .comment-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #eee;
         }
-        .back-link {
-            text-align: center;
-            margin-bottom: 30px;
+        
+        .comment-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical; /* Allow user to resize height */
         }
-        .back-link a {
-            text-decoration: none;
-            color: #666;
-            font-size: 0.9em;
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover { background-color: #0056b3; }
+
+        /* The list of saved comments */
+        .comments-display { margin-top: 20px; }
+        .single-comment {
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF; /* Blue bar on left */
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Reader Discussion Board</h1>
+    <h1>My Writings</h1>
+
+    <div class="writing-container" id="section-1">
+        <h2>1. The Philosophy of Education</h2>
+        <p>This is the content for your first writing. It explores how we learn...</p>
         
-        <div class="back-link">
-            <p>Share your thoughts, critiques, and feedback below.</p>
+        <div class="comment-section">
+            <h4>Comments for Section 1</h4>
+            <textarea class="comment-input" placeholder="Write a comment..." rows="3"></textarea>
+            <br>
+            <button onclick="postComment('section-1')">Post Comment</button>
+            <div class="comments-display" id="comments-section-1"></div>
         </div>
-
-        <div id="disqus_thread"></div>
-        <script>
-            var disqus_config = function () {
-            this.page.url = window.location.href;  
-            this.page.identifier = 'general-discussion-board'; 
-            };
-            
-            (function() { 
-            var d = document, s = d.createElement('script');
-            s.src = 'https://pushkarwrites10.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
     </div>
+
+    <div class="writing-container" id="section-2">
+        <h2>2. Modern History</h2>
+        <p>This is the content for the second writing. It discusses historical events...</p>
+        
+        <div class="comment-section">
+            <h4>Comments for Section 2</h4>
+            <textarea class="comment-input" placeholder="Write a comment..." rows="3"></textarea>
+            <br>
+            <button onclick="postComment('section-2')">Post Comment</button>
+            <div class="comments-display" id="comments-section-2"></div>
+        </div>
+    </div>
+
+    <div class="writing-container" id="section-3">
+        <h2>3. Technology Trends</h2>
+        <p>This is the third writing about the future of AI...</p>
+        
+        <div class="comment-section">
+            <h4>Comments for Section 3</h4>
+            <textarea class="comment-input" placeholder="Write a comment..." rows="3"></textarea>
+            <br>
+            <button onclick="postComment('section-3')">Post Comment</button>
+            <div class="comments-display" id="comments-section-3"></div>
+        </div>
+    </div>
+
+    <script>
+        // 1. LOAD COMMENTS ON STARTUP
+        // This runs when the page opens to check for saved comments
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = ['section-1', 'section-2', 'section-3']; // Add more IDs here if you create more sections
+            
+            sections.forEach(id => {
+                loadComments(id);
+            });
+        });
+
+        // 2. FUNCTION TO POST A COMMENT
+        function postComment(sectionId) {
+            // Find the specific container
+            const container = document.getElementById(sectionId);
+            // Find the text area inside that container
+            const input = container.querySelector('.comment-input');
+            const text = input.value;
+
+            if (text.trim() === "") {
+                alert("Please write something!");
+                return;
+            }
+
+            // Save to Local Storage (Browser Memory)
+            // We create a unique key like "comments_section-1"
+            const storageKey = 'comments_' + sectionId;
+            let currentComments = JSON.parse(localStorage.getItem(storageKey)) || [];
+            currentComments.push(text);
+            localStorage.setItem(storageKey, JSON.stringify(currentComments));
+
+            // Clear the box and reload the list
+            input.value = '';
+            loadComments(sectionId);
+        }
+
+        // 3. FUNCTION TO DISPLAY COMMENTS
+        function loadComments(sectionId) {
+            const storageKey = 'comments_' + sectionId;
+            const displayArea = document.getElementById('comments-' + sectionId);
+            const comments = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+            // Clear current list to prevent duplicates
+            displayArea.innerHTML = '';
+
+            // Create HTML for each comment
+            comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'single-comment';
+                div.textContent = comment;
+                displayArea.appendChild(div);
+            });
+        }
+    </script>
 
 </body>
 </html>
