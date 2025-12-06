@@ -7,14 +7,13 @@
     <style>
         /* --- DESIGN STYLES --- */
         body {
-            font-family: 'Georgia', serif; /* Matching your document style */
+            font-family: 'Georgia', serif;
             line-height: 1.8;
-            background-color: #fdfbf7; /* Slight beige/paper tone */
+            background-color: #fdfbf7;
             color: #333;
             margin: 0;
             padding: 0;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -23,35 +22,29 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             min-height: 100vh;
         }
-
         header {
             text-align: center;
             padding-bottom: 40px;
             border-bottom: 2px solid #eee;
             margin-bottom: 40px;
         }
-
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
             color: #222;
         }
-
         .date {
-            color: #d9534f; /* The Red color you use for dates */
+            color: #d9534f;
             font-weight: bold;
             font-family: sans-serif;
             font-size: 0.9em;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .content {
             font-size: 1.1em;
             margin-bottom: 50px;
         }
-
-        /* The "Call to Action" Button */
         .comment-cta {
             text-align: center;
             margin: 50px 0;
@@ -60,7 +53,6 @@
             border-radius: 8px;
             border: 1px dashed #ccc;
         }
-
         .comment-btn {
             background-color: #d9534f;
             color: white;
@@ -75,12 +67,9 @@
             margin-top: 10px;
             cursor: pointer;
         }
-
         .comment-btn:hover {
             background-color: #c9302c;
         }
-
-        /* Comment Section Area */
         #comment-section {
             margin-top: 60px;
             padding-top: 20px;
@@ -102,10 +91,12 @@
             <p>Whatever we are today is nothing but a result of choices made at different stages of our life. Something that keeps humans a little ahead of other species is their level of consciousness.</p>
             
             <p>Prior to the battle of Kurukshetra, Sakuni advised Duryodhan to seek help from Dwaraka. Seeking help from Shri Krishna was something that Duryodhan's ego resisted, but being worried about the involvement of Dwaraka, he agreed.</p>
+            
+            <p>Duryodhan reached Dwarka and so did Arjun. Seeing Krishna resting in his room, Duryodhan sat next to Shri Krishna waiting for him to awake. Meanwhile Arjun enters into the sleeping room and remains standing in humble reverence beside the feet of the almighty.</p>
+            
+            <p>The seeking of help from the almighty comes with the condition. And that condition, the dissolve of ego and surrender. The body language of Arjun is the reflection of that condition, but Duryodhan's perhaps not.</p>
 
-            <p><strong>(Paste the rest of your article content here...)</strong></p>
-
-            <p>In reality, whenever we have gone to seek help we have seeked Narayani Sena not the Narayan himself. But it was not so with Parth. He rejected every 999 means to get only one complete means.</p>
+            <p>In reality, whenever we have gone to seek help we have seeked Narayani Sena not the Narayan himself. But it was not so with Parth. He rejected every 999 means to get only one complete means. One complete means that awakens him from his low during his biggest battle.</p>
         </div>
 
         <div class="comment-cta">
@@ -116,22 +107,16 @@
 
         <div id="comment-section">
             <h3>Discussion</h3>
-            <p><em>(To make this part actually save comments online, you would paste a free code snippet from Disqus.com here. For now, this is what it looks like.)</em></p>
-            
             <div id="disqus_thread"></div>
             <script>
-                /**
-                * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
                 var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.page.url = window.location.href;  
+                this.page.identifier = 'choice-dilemma-01'; 
                 };
-                */
+                
                 (function() { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
-                s.src = 'https://EXAMPLE.disqus.com/embed.js'; // You would replace 'EXAMPLE' with your unique Disqus ID
+                s.src = 'https://pushkarwrites10.disqus.com/embed.js';
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
                 })();
